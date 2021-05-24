@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   }
   orderText = order.getOrderText();
   // const orderText = order.getOrderText();
-  return res.status(200).json({ orderText });
+  return res.status(order.getStatus()).json({ orderText });
 });
 
 module.exports = app;

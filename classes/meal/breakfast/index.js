@@ -3,14 +3,6 @@
 const Meal = require('../index');
 const { BREAKFAST_MENU } = require('../../../data/menus');
 
-/*
- * Breakfast class.
- *
- * @constructor
- * @param {String} id - The id.
- * @param {Number} x  - The x coordinate.
- * @param {Number} y  - The y coordinate.
- */
 class Breakfast extends Meal {
   constructor(dishIDs) {
     super();
@@ -36,11 +28,15 @@ class Breakfast extends Meal {
 
   getOrderText() {
     if (this.failureMessage) return this.failureMessage;
+
     // check breakfast order requirements
     if (this.main === 0) return 'Unable to process. Main is missing';
     if (this.side === 0) return 'Unable to process. Side is missing';
     if (this.main > 1) return 'Unable to process. Only one Main is allowed';
     if (this.side > 1) return 'Unable to process. Only one Side is allowed';
+
+    this.status = 200;
+
     // generate orderText
     let orderText = '';
     orderText += BREAKFAST_MENU.main.name;
@@ -57,4 +53,3 @@ class Breakfast extends Meal {
 }
 
 module.exports = { Breakfast };
-// export default { Breakfast };
