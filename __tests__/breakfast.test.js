@@ -1,4 +1,4 @@
-// server.test.js
+// breakfast.test.js
 
 const supertest = require('supertest');
 const app = require('../server');
@@ -39,10 +39,22 @@ it('Testing invalid dish ID', async (done) => {
   const res = await request
     .get('/')
     .set('Content-Type', 'application/json')
+    .send({ order: 'Breakfast 1,2,44' });
+  expect(res.status).toBe(400);
+  expect(res.body.orderText).toBe(
+    'Unable to process. 44 is not a valid dish ID'
+  );
+  done();
+});
+
+it('Testing dessert for breakfast', async (done) => {
+  const res = await request
+    .get('/')
+    .set('Content-Type', 'application/json')
     .send({ order: 'Breakfast 1,2,4' });
   expect(res.status).toBe(400);
   expect(res.body.orderText).toBe(
-    'Unable to process. 4 is not a valid Breakfast dish ID'
+    'Unable to process. Cannot order Dessert for Breakfast'
   );
   done();
 });

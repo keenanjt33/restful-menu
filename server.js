@@ -3,6 +3,7 @@
 const express = require('express');
 const parseInput = require('./helper');
 const { Breakfast } = require('./classes/meal/breakfast');
+const { Lunch } = require('./classes/meal/lunch');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
       order = new Breakfast(dishIDs);
       break;
     case 'LUNCH':
+      order = new Lunch(dishIDs);
       break;
     case 'DINNER':
       break;
