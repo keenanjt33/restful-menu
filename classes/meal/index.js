@@ -6,6 +6,7 @@ class Meal {
     this.side = 0;
     this.drink = 0;
     this.dessert = 0;
+    this.water = 0;
     this.status = 400;
     this.failureMessage = '';
 
@@ -51,6 +52,7 @@ class Meal {
       orderText += this.menu.drink.name;
       if (this.drink > 1) orderText += `(${this.drink})`;
     }
+    if (this.water === 1 && this.drink > 0) orderText += ', Water';
     if (this.dessert > 0) {
       orderText += ', ';
       if (!Object.prototype.hasOwnProperty.call(this.menu, 'dessert')) {
